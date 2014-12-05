@@ -1,0 +1,25 @@
+table {
+  border-collapse: collapse;
+}
+td {
+  height: 30px;
+  width: 100px;
+  border-bottom: 1px solid blue;
+  border-collapse: collapse;
+  text-align: center;
+}
+tr {
+  border-bottom: 1px solid blue;
+}
+
+th {
+  cursor: pointer;
+  width: 10px;
+  border: 1px solid grey;
+  margin-left: 5px;
+}
+
+.hidden {
+  display: none;
+  /*visibility: hidden;*/
+}
