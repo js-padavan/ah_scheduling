@@ -7,7 +7,6 @@ class @Scheduler
       @generate_initial_schedule()
 
   generate_initial_schedule: ->
-      console.log helpers
       @schedule = helpers.create2DArray(@L, @N)
       for l in [0...@L]
         for i in [0...@N]
@@ -26,14 +25,63 @@ class @Scheduler
     return @prc_orders
 
 
+  # generate_new_schedule: ->
+  #   @schedule = helpers.copy2DArray(@schedule)
+  #   for l in [0...@L]
+  #     loop
+  #       first_index = parseInt(Math.random()*1000%@N)
+  #       second_index = parseInt(Math.random()*1000%@N)
+  #       break if first_index < second_index
+  #
+  #     buf = @schedule[l][first_index]
+  #     @schedule[l][first_index] = @schedule[l][second_index]
+  #     @schedule[l][second_index] = buf
+  #
+  #   return @schedule
+
+  # generate_new_schedule: ->
+  #   @schedule = helpers.copy2DArray(@schedule)
+  #   loop
+  #     first_index = parseInt(Math.random()*1000%@N)
+  #     second_index = parseInt(Math.random()*1000%@N)
+  #     break if first_index < second_index
+  #   for l in [0...@L]
+  #     buf = @schedule[l][first_index]
+  #     @schedule[l][first_index] = @schedule[l][second_index]
+  #     @schedule[l][second_index] = buf
+  #
+  #   return @schedule
+
+  # generate_new_schedule: ->
+  #   @schedule = helpers.copy2DArray(@schedule)
+  #   loop
+  #     first_index = parseInt(Math.random()*1000%@N)
+  #     second_index = parseInt(Math.random()*1000%@N)
+  #     break if first_index < second_index
+  #   l = parseInt(Math.random()*1000%@L)
+  #
+  #   # for l in [0...@L]
+  #   buf = @schedule[l][first_index]
+  #   @schedule[l][first_index] = @schedule[l][second_index]
+  #   @schedule[l][second_index] = buf
+  #
+  #   return @schedule
+
   generate_new_schedule: ->
     @schedule = helpers.copy2DArray(@schedule)
-    for l in [0...@L]
-      loop
-        first_index = parseInt(Math.random()*1000%@N)
-        second_index = parseInt(Math.random()*1000%@N)
-        break if first_index < second_index
+    loop
+      first_index = parseInt(Math.random()*1000%@N)
+      second_index = parseInt(Math.random()*1000%@N)
+      break if first_index != second_index
+    P = Math.random()
 
+    if P < 0.3
+      for l in [0...@L]
+        buf = @schedule[l][first_index]
+        @schedule[l][first_index] = @schedule[l][second_index]
+        @schedule[l][second_index] = buf
+    else
+      l = parseInt(Math.random()*1000%@L)
       buf = @schedule[l][first_index]
       @schedule[l][first_index] = @schedule[l][second_index]
       @schedule[l][second_index] = buf

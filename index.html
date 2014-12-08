@@ -9,40 +9,41 @@
   <script src="scheduler.js"></script>
   <script src="method.js"></script>
   <script src="main.js"></script>
+  <!---<script src="full_permutation.js"></script>-->
 </head>
 <body>
   Annualing heating
 
-  <table id="prc_tim">
-    <tr>
-      <td><div>3</div> <input type="text" class="hidden"/> </td>
-      <td><div>5</div> <input type="text" class="hidden"/> </td>
-      <td><div>7</div> <input type="text" class="hidden"/> </td>
-      <th rowspan="5" id="addColumnBtn"></th>
-    </tr>
-    <tr>
-      <td><div>2</div> <input type="text" class="hidden"/> </td>
-      <td><div>3</div> <input type="text" class="hidden"/> </td>
-      <td><div>8</div> <input type="text" class="hidden"/> </td>
-    </tr>
-    <tr>
-      <td><div>3</div> <input type="text" class="hidden"/> </td>
-      <td><div>5</div> <input type="text" class="hidden"/> </td>
-      <td><div>7</div> <input type="text" class="hidden"/> </td>
-    </tr>
-    <tr>
-      <td><div>2</div> <input type="text" class="hidden"/> </td>
-      <td><div>3</div> <input type="text" class="hidden"/> </td>
-      <td><div>8</div> <input type="text" class="hidden"/> </td>
-    </tr>
-    <tr>
-      <td><div>3</div> <input type="text" class="hidden"/> </td>
-      <td><div>5</div> <input type="text" class="hidden"/> </td>
-      <td><div>7</div> <input type="text" class="hidden"/> </td>
-    </tr>
-    <tr>
-      <th colspan="3" id="addRowBtn"></th>
-    </tr>
-  </table>
+  <div class="input_matrix">
+    <div class="row">
+      <table id="prc_time">
+      </table>
+      <div class="tableControls columnControls">
+        <div id="addColumnBtn" class="btn">+</div>
+        <div id="removeColumnBtn" class="btn">-</div>
+      </div>
+    </div>
+    <div class="tableControls rowControls">
+      <div id="addRowBtn" class="btn">+</div>
+      <div id="removeRowBtn" class="btn">-</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <label for="min-t">min t</label>
+    <input id="min-t" type="text" value="1">
+    <label for="max-t">max t</label>
+    <input id="max-t" type="text" value="300">
+  </div>
+  <div class="row">
+    <button id="startBtn">GO GO GO</button>
+  </div>
+  <hr>
+  <div class="results">
+    <div class="well">
+      <div id="initial_F" class="panel"></div>
+      <div id="global_F" class="panel"></div>
+    </div>
+  </div>
 </body>
 </html>

@@ -2,9 +2,11 @@
 class Helpers
 
   create2DArray: (rows, cols)->
-    arr = Array.apply(null, new Array(rows))
+    # arr = Array.apply(null, new Array(rows))
+    arr = new Array(rows)
     for i in [0...rows]
-      arr[i] = Array.apply(null, new Array(cols)).map(Number.prototype.valueOf, 0)
+      # arr[i] = Array.apply(null, new Array(cols)).map(Number.prototype.valueOf, 0)
+      arr[i] = new Uint16Array(cols)
     return arr
 
   copy2DArray: (arr)->
