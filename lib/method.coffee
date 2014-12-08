@@ -13,7 +13,8 @@ class Method
     # console.log P, rand
     if rand < P then true else false
 
-  start: (t_min, t_max)->
+  start: (t_min, t_max, progress_notification)->
+    console.log onmessage
     t_cur = t_max
     @iteration = 0
     @global_F = cur_F = @scheduler.count_F()
@@ -28,8 +29,13 @@ class Method
       @iteration++
       @scheduler.generate_new_schedule()
       cur_F = @scheduler.count_F()
+
+      #  for tracking progress
       if (@iteration % 1000) == 0
-        console.info "*1000 iterations"
+        progress_notification()
+
+
+
       if (cur_F < @global_F)
         @global_F = cur_F
         @global_schedule = @scheduler.schedule
@@ -53,6 +59,7 @@ class Method
       global_F: @global_F
       global_schedule: @global_schedule
       initial_F: initial_F
+      prc_start_time: @scheduler.prc_start_time
     return res
 
 @Method = Method

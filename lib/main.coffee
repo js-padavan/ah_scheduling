@@ -91,6 +91,16 @@ printMatrix = (arr, str) ->
   buf = $('<div></div>').append('<div>' + str + '</div>').append(table)
   $('<div class="panel"></div>').append(buf)
 
+print_results = (res) ->
+  $('#initial_F').text("initial F=" + res.initial_F)
+  $('#global_F').text("global_F=" + res.global_F)
+  $('.results>.panel').remove()
+  $('.results').append printMatrix(res.global_schedule, 'полученное расписание')
+  for l in [0...res.prc_start_time.length]
+    $('.results').append printMatrix(res.prc_start_time[l], 'Матрица времени начала обработки на ' + l + ' приборе')
+  console.log res.global_F
+
+
 
 $  ->
   console.log('loaded');
@@ -115,12 +125,21 @@ $  ->
     prc_time = readPrcTime()
     min_t = parseFloat($('#min-t').val())
     max_t = parseFloat($('#max-t').val())
-    sc = new Scheduler(model.rows, model.cols, prc_time, 0)
-    method = new Method(sc)
-    res = method.start(min_t, max_t)
-    $('#initial_F').text("initial F=" + res.initial_F)
-    $('#global_F').text("global_F=" + res.global_F)
-    $('.results').append printMatrix(sc.schedule, 'полученное расписание')
-    for l in [0...sc.L]
-      $('.results').append printMatrix(sc.prc_start_time[l], 'Матрица времени начала обработки на ' + l + ' приборе')
-    console.log F
+
+
+    #  spawning Web Worker
+    worker = new Worker('worker.js')
+    msg =
+      N: model.rows
+      L: model.cols
+      prc_time: prc_time
+      max_t: max_t
+      min_t: min_t
+
+    worker.onmessage = (ev)->
+      switch ev.data.title
+        when 'results' then print_results(ev.data)
+        when 'progress' then console.log '+1000 progress'
+
+
+    worker.postMessage(msg)
