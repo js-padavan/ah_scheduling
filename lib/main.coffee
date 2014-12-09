@@ -100,9 +100,28 @@ print_results = (res) ->
     $('.results').append printMatrix(res.prc_start_time[l], 'Матрица времени начала обработки на ' + l + ' приборе')
   console.log res.global_F
 
+increment_counter = ->
+  value = parseInt($('.counter-value').text());
+  value++;
+  $('.counter-value').text(value)
+
+
 
 
 $  ->
+  console.log 'svg!!'
+  $('.counter-value').text("0");
+  circle = new ProgressBar.Circle('#progress-container', {fill: "#FFF9F0", color: "#FCB03C", strokeWidth: 2.1})
+  console.log circle
+  animate = ->
+    circle.set(0)
+    circle.animate(1, {duration: 2000, easing: "easeInOut"})
+  setInterval(animate, 2200)
+  animate()
+
+
+
+
   console.log('loaded');
   generateMatrix()
 
@@ -138,8 +157,13 @@ $  ->
 
     worker.onmessage = (ev)->
       switch ev.data.title
-        when 'results' then print_results(ev.data)
-        when 'progress' then console.log '+1000 progress'
+        when 'results'
+          $('.eclipse').addClass('hidden')
+          print_results(ev.data)
+        when 'progress'
+          console.log '+1000 progress'
+          increment_counter();
 
 
     worker.postMessage(msg)
+    $('.eclipse').removeClass('hidden')

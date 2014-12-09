@@ -2,19 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Cache-control" content="no-cache">
+  <!-- <meta http-equiv="Cache-control" content="no-cache"> -->
   <title>Annualing heating</title>
   <link rel="stylesheet" href="styles.css">
   <script src="lib/jquery-2.1.1.js"></script>
+  <script src="lib/progressbar.js"></script>
   <script src="helpers.js"></script>
   <script src="scheduler.js"></script>
   <script src="method.js"></script>
   <script src="main.js"></script>
-  <!---<script src="full_permutation.js"></script>-->
 </head>
 <body>
-  Annualing heating
-
   <div class="input_matrix">
     <div class="row">
       <table id="prc_time">
@@ -44,6 +42,11 @@
     <div class="well">
       <div id="initial_F" class="panel"></div>
       <div id="global_F" class="panel"></div>
+    </div>
+  </div>
+  <div class="eclipse hidden">
+    <div id="progress-container">
+      <div id="counter"><span class="counter-value"></span><span class="scale">x1000</span></div>
     </div>
   </div>
 </body>
