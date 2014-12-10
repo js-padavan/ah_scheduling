@@ -14,7 +14,7 @@ module.exports = (grunt) ->
           # sourceMap: true
           join: true
         expand: true
-        cwd: 'lib/'
+        cwd: 'src/'
         src: ['*.coffee']
         dest: './'
         ext: '.js'
@@ -27,7 +27,7 @@ module.exports = (grunt) ->
         # ext: '.js'
     watch:
       app:
-        files: 'lib/*.coffee'
+        files: 'src/*.coffee'
         tasks: ['coffee']
         options:
           livereload: true

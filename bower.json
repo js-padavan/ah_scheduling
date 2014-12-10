@@ -1,0 +1,25 @@
+{
+  "name": "ah_scheduling",
+  "version": "0.0.0",
+  "homepage": "https://github.com/js-padavan/ah_scheduling",
+  "authors": [
+    "__V <vlad.dovzhenko@gmail.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "progressbar.js": "~0.6.1"
+  }
+}
