@@ -107,9 +107,19 @@ increment_counter = ->
 
 
 
+build_diagrams = (prc_time, L, N)->
+  s = Snap('#svg')
+  line = s.line(10,10, 100, 12);
+  line.attr({strokeWidth: 2, fill: '#000'})
+
 
 $  ->
   console.log 'svg!!'
+  build_diagrams()
+
+
+
+
   $('.counter-value').text("0");
   circle = new ProgressBar.Circle('#progress-container', {fill: "#FFF9F0", color: "#FCB03C", strokeWidth: 2.1})
   console.log circle
